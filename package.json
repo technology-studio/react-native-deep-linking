@@ -33,19 +33,18 @@
       "pre-push": "yarn run git-hook"
     }
   },
-  "dependencies": {
-    "url-parse": "^1.4.6"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.3.3",
+    "@txo-peer-dep/log": "^1.0.1",
+    "@txo-peer-dep/react-conditional-navigation": "^2.1.0",
     "@txo/babel-preset": "^1.0.0",
+    "@txo/react": "^1.0.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.1.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.9.1",
-    "react": "16.8.3",
-    "react-dom": "16.8.3",
     "eslint": "^5.14.1",
     "eslint-config-txo-react": "^2.1.0",
     "eslint-formatter-pretty": "^2.1.1",
@@ -61,10 +60,10 @@
     "glow": "technology-studio-forks/glow#fix/flow-version-boundaries",
     "husky": "^1.2.1",
     "jest": "^24.1.0",
+    "react": "16.8.3",
+    "react-dom": "16.8.3",
     "react-native": "0.59.4",
-    "@txo-peer-dep/log": "^1.0.1",
-    "@txo-peer-dep/react-conditional-navigation": "^2.1.0",
-    "@txo/react": "^1.0.0"
+    "url-parse": "^1.4.7"
   },
   "jest": {
     "testMatch": [
