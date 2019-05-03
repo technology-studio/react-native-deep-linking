@@ -22,7 +22,7 @@ type Props = ContainerProps & {
   deeplinkNavigationMap: ?DeeplinkNavigationMap,
 }
 
-const log = new Log('@txo/react-native-deep-linking/lib/Containers/DeeplinkContainer')
+const log = new Log('@txo.react-native-deep-linking.lib.Containers.DeeplinkContainer')
 
 export class DeeplinkContainer extends React.Component<Props> {
   componentDidMount () {
