@@ -30,6 +30,7 @@
     "build:watch:flow": "yarn flow-copy-source --verbose -w -i '**/__tests__/**' src lib"
   },
   "dependencies": {
+    "@txo/log": "^1.0.0",
     "@txo/react": "^1.0.0",
     "url-parse": "^1.4.7"
   },

@@ -2096,6 +2096,11 @@
   resolved "https://npm.technologystudio.sk/@txo%2flog-console/-/log-console-2.0.0.tgz#9dd0b90af3b4380fe1107bfce3dae908a75d312a"
   integrity sha512-p9ece7Z4Mtcz9K9bL7SU2DgIPmGNmST5eiLSX9cAEl1F3WyrSAswxwUQtBggG6esyk/kv4TMifA2qu7Njgf70A==
 
+"@txo/log@^1.0.0":
+  version "1.0.0"
+  resolved "https://npm.technologystudio.sk/@txo%2flog/-/log-1.0.0.tgz#690ddd05fa3568833ebb95a521dd3b2caf23a917"
+  integrity sha512-zEIkfLqEK9mClHcqOAq+PTXg7yWmNmHmNNurJJVtg8gq1ZIb/FJtBRXqWRICkmhQ7RfCnilrclcnFlEhLyvNFw==
+
 "@txo/react@^1.0.0":
   version "1.0.0"
   resolved "https://npm.technologystudio.sk/@txo%2freact/-/react-1.0.0.tgz#2b7d1c39977bd9a892e64487ec1e577d6e5f7682"
