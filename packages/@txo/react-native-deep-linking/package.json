@@ -31,11 +31,11 @@
   },
   "dependencies": {
     "@txo/react": "^1.0.0",
-    "url-parse": "^1.4.6"
+    "url-parse": "^1.4.7"
   },
   "peerDependencies": {
-    "@txo-peer-dep/log": "^1.0.1",
-    "@txo-peer-dep/react-conditional-navigation": "^2.1.0",
+    "@txo-peer-dep/log": "^3.0.0",
+    "@txo-peer-dep/react-conditional-navigation": "^2.2.2",
     "react-native": "*"
   }
 }
