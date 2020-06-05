@@ -36,7 +36,7 @@
   },
   "peerDependencies": {
     "@txo-peer-dep/log": "^3.0.0",
-    "@txo-peer-dep/react-conditional-navigation": "^2.2.2",
+    "@txo-peer-dep/react-conditional-navigation": "^3.0.0",
     "react-native": "*"
   }
 }

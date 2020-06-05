@@ -37,7 +37,7 @@
     "@babel/core": "^7.9.0",
     "@babel/node": "^7.8.7",
     "@txo-peer-dep/log": "^3.0.0",
-    "@txo-peer-dep/react-conditional-navigation": "^2.2.2",
+    "@txo-peer-dep/react-conditional-navigation": "^3.0.0",
     "@txo/babel-preset": "^1.0.0",
     "@txo/glow": "^1.2.3",
     "@txo/log-console": "^2.0.0",
@@ -66,6 +66,8 @@
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-native": "0.61.2",
+    "react-redux": "^7.1.0",
+    "redux": "^4.0.1",
     "rimraf": "^3.0.2",
     "url-parse": "^1.4.7"
   },
