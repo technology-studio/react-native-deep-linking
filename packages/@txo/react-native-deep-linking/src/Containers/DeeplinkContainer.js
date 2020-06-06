@@ -8,7 +8,7 @@
 import * as React from 'react'
 import { Linking } from 'react-native'
 import type { ContainerProps } from '@txo/react'
-import { Log } from '@txo-peer-dep/log'
+import { Log } from '@txo/log'
 import Url from 'url-parse'
 import { navigationManager } from '@txo-peer-dep/react-conditional-navigation'
 import type { NavigationAction } from '@txo-peer-dep/react-conditional-navigation'

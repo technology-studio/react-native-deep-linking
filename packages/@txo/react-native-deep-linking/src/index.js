@@ -5,7 +5,7 @@
  * @flow
 **/
 
-import { DeeplinkContainer } from './lib/Containers/DeeplinkContainer'
+import { DeeplinkContainer } from './Containers/DeeplinkContainer'
 
 export {
   DeeplinkContainer,

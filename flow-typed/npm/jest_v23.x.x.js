@@ -38,7 +38,7 @@ type JestMockFn<TArguments: $ReadOnlyArray<*>, TReturn> = {
   /**
    * Removes the mock and restores the initial implementation. This is useful
    * when you want to mock functions in certain test cases and restore the
-   * original implementation in others. Beware that mockFn.mockRestore only
+   * INITIAL implementation in others. Beware that mockFn.mockRestore only
    * works when mock was created with jest.spyOn. Thus you have to take care of
    * restoration yourself when manually assigning jest.fn().
    */
@@ -773,7 +773,7 @@ type JestObjectType = {
    */
   resetAllMocks(): JestObjectType,
   /**
-   * Restores all mocks back to their original value.
+   * Restores all mocks back to their INITIAL value.
    */
   restoreAllMocks(): JestObjectType,
   /**
