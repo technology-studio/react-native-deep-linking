@@ -2,17 +2,20 @@
  * @Author: Erik Slovak <erik.slovak@technologystudio.sk>
  * @Date: 2019-04-25T13:04:03+02:00
  * @Copyright: Technology Studio
- * @flow
 **/
 
 import type { ReactNode } from 'react'
-import React from 'react'
+import {
+  useEffect,
+  useRef,
+} from 'react'
 import type { EmitterSubscription } from 'react-native'
 import { Linking } from 'react-native'
 import { Log } from '@txo/log'
 import Url from 'url-parse'
-import { navigationManager } from '@txo-peer-dep/react-conditional-navigation'
-import type { NavigationAction } from '@txo-peer-dep/react-conditional-navigation'
+import type { CommonActions } from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native'
+import type { DefaultRootState } from '@txo-peer-dep/redux'
 
 import type {
   DeeplinkNavigationMap,
@@ -22,40 +25,41 @@ import type {
 type Props = {
   children: ReactNode,
   deeplinkNavigationMap: DeeplinkNavigationMap | undefined,
+  getState: () => DefaultRootState,
 }
 
 const log = new Log('@txo.react-native-deep-linking.lib.Containers.DeeplinkContainer')
 
-export class DeeplinkContainer extends React.Component<Props> {
-  listener: EmitterSubscription | null = null
-  componentDidMount (): void {
-    this.listener = Linking.addEventListener('url', this.handleDeeplink)
-  }
+export const DeeplinkContainer = ({
+  children,
+  deeplinkNavigationMap,
+  getState,
+}: Props): ReactNode => {
+  const listenerRef = useRef<EmitterSubscription | null>(null)
+  const navigation = useNavigation()
 
-  componentWillUnmount (): void {
-    this.listener?.remove()
-  }
+  useEffect(() => {
+    listenerRef.current = Linking.addEventListener('url', handleDeeplink)
+    return (): void => {
+      listenerRef.current?.remove()
+    }
+  }, [])
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  handleDeeplink = (event: any): void => {
+  const handleDeeplink = (event: { url: string }): void => {
     log.debug('handleDeeplink event', event)
     const link = event.url
     const pureLink: string = link.split('?', 1)[0]
-    const deeplinkNavigationActionCreator: DeeplinkNavigationActionCreator | undefined = this.props.deeplinkNavigationMap?.[pureLink]
+    const deeplinkNavigationActionCreator: DeeplinkNavigationActionCreator | undefined = deeplinkNavigationMap?.[pureLink]
     if (deeplinkNavigationActionCreator) {
       const url = new Url(link, true)
-      const navigationAction: NavigationAction | null = deeplinkNavigationActionCreator(url.query)
+      const navigationAction: CommonActions.Action | null = deeplinkNavigationActionCreator(url.query, getState())
       if (navigationAction) {
-        navigationManager.dispatchNavigationAction(navigationAction)
+        navigation.dispatch(navigationAction)
       }
     } else {
       log.debug('UNKNOWN DEEPLINK', { link })
     }
   }
 
-  render (): ReactNode {
-    return (
-      this.props.children
-    )
-  }
+  return children
 }
