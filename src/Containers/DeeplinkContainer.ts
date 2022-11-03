@@ -7,9 +7,7 @@
 import type { ReactNode } from 'react'
 import {
   useEffect,
-  useRef,
 } from 'react'
-import type { EmitterSubscription } from 'react-native'
 import { Linking } from 'react-native'
 import { Log } from '@txo/log'
 import Url from 'url-parse'
@@ -35,13 +33,12 @@ export const DeeplinkContainer = ({
   deeplinkNavigationMap,
   getState,
 }: Props): ReactNode => {
-  const listenerRef = useRef<EmitterSubscription | null>(null)
   const navigation = useNavigation()
 
   useEffect(() => {
-    listenerRef.current = Linking.addEventListener('url', handleDeeplink)
+    const listener = Linking.addEventListener('url', handleDeeplink)
     return (): void => {
-      listenerRef.current?.remove()
+      listener.remove()
     }
   }, [])
 
