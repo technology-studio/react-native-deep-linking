@@ -4338,7 +4338,7 @@ eslint-config-standard@17.0.0:
   resolved "https://registry.yarnpkg.com/eslint-config-standard/-/eslint-config-standard-17.0.0.tgz#fd5b6cf1dcf6ba8d29f200c461de2e19069888cf"
   integrity sha512-/2ks1GKyqSOkH7JFvXJicu0iMpoojkwB+f5Du/1SC0PtBL+s8v30k9njRZ21pm2drKYm2342jFnGWzttxPmZVg==
 
-eslint-config-txo-typescript-react@^1.0.0:
+eslint-config-txo-typescript-react@^1.0.19:
   version "1.0.19"
   resolved "https://registry.yarnpkg.com/eslint-config-txo-typescript-react/-/eslint-config-txo-typescript-react-1.0.19.tgz#8a1ec7c4326bde30f47f9480bbc469f2692b95e2"
   integrity sha512-EToHAruOjg8NyEiJT2LOYciqYRK6eveIZNVOkPAp9cY/QK62TzgpM+8UYqV0PnTN9K9D50L4FsFUfHPZXbvTQQ==
