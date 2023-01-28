@@ -81,7 +81,7 @@
     "react-native": "0.71.1",
     "react-navigation": "^4.4.4",
     "react-redux": "^8.0.5",
-    "redux": "^4.2.0",
+    "redux": "^4.2.1",
     "redux-saga": "^1.2.2",
     "rimraf": "^4.1.2",
     "semantic-release": "^20.1.0",
