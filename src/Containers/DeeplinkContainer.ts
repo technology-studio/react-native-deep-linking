@@ -47,10 +47,10 @@ export const DeeplinkContainer = ({
     const link = event.url
     const pureLink: string = link.split('?', 1)[0]
     const deeplinkNavigationActionCreator: DeeplinkNavigationActionCreator | undefined = deeplinkNavigationMap?.[pureLink]
-    if (deeplinkNavigationActionCreator) {
+    if (deeplinkNavigationActionCreator != null) {
       const url = new Url(link, true)
       const navigationAction: CommonActions.Action | null = deeplinkNavigationActionCreator(url.query, getState())
-      if (navigationAction) {
+      if (navigationAction != null) {
         navigation.dispatch(navigationAction)
       }
     } else {
