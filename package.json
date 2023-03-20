@@ -55,7 +55,7 @@
     "@txo-peer-dep/redux": "^1.0.0",
     "@txo/log-console": "^3.0.0",
     "@types/jest": "^29.5.0",
-    "@types/react-native": "^0.71.3",
+    "@types/react-native": "^0.71.4",
     "@types/url-parse": "^1.4.8",
     "@typescript-eslint/eslint-plugin": "^5.56.0",
     "@typescript-eslint/parser": "^5.56.0",
