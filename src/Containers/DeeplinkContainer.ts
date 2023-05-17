@@ -46,10 +46,42 @@ export const DeeplinkContainer = ({
     log.debug('handleDeeplink event', event)
     const link = event.url
     const pureLink: string = link.split('?', 1)[0]
-    const deeplinkNavigationActionCreator: DeeplinkNavigationActionCreator | undefined = deeplinkNavigationMap?.[pureLink]
+    const {
+      deeplinkNavigationActionCreator,
+      params,
+    } = Object.keys(deeplinkNavigationMap ?? {})
+      .reduce<{
+      deeplinkNavigationActionCreator: DeeplinkNavigationActionCreator | undefined,
+      params: Record<string, string>,
+    }>((
+      { deeplinkNavigationActionCreator, params },
+      deeplinkPath,
+    ) => {
+      if (deeplinkNavigationActionCreator != null) {
+        return { deeplinkNavigationActionCreator, params }
+      }
+      if (deeplinkPath.includes('$')) {
+        const deeplinkPathParts = deeplinkPath.split('/')
+        const pureLinkParts = pureLink.split('/')
+        if (deeplinkPathParts.length !== pureLinkParts.length) {
+          return { deeplinkNavigationActionCreator, params }
+        }
+        const nextParams = deeplinkPathParts.reduce<Record<string, string>>((paramMap, part, index) => {
+          if (part.startsWith('$')) {
+            paramMap[part.slice(1)] = pureLinkParts[index]
+          }
+          return paramMap
+        }, {})
+        return { deeplinkNavigationActionCreator: deeplinkNavigationMap?.[deeplinkPath], params: nextParams }
+      }
+      return { deeplinkNavigationActionCreator, params }
+    }, { deeplinkNavigationActionCreator: undefined, params: {} })
     if (deeplinkNavigationActionCreator != null) {
       const url = new Url(link, true)
-      const navigationAction: CommonActions.Action | null = deeplinkNavigationActionCreator(url.query, getState())
+      const navigationAction: CommonActions.Action | null = deeplinkNavigationActionCreator(
+        { ...url.query, ...params },
+        getState(),
+      )
       if (navigationAction != null) {
         navigation.dispatch(navigationAction)
       }
