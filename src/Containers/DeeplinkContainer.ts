@@ -4,7 +4,6 @@
  * @Copyright: Technology Studio
 **/
 
-import type { ReactNode } from 'react'
 import {
   useEffect,
 } from 'react'
@@ -21,7 +20,7 @@ import type {
 } from '../Model/Types'
 
 type Props = {
-  children: ReactNode,
+  children: JSX.Element,
   deeplinkNavigationMap: DeeplinkNavigationMap | undefined,
   getState: () => DefaultRootState,
 }
@@ -32,7 +31,7 @@ export const DeeplinkContainer = ({
   children,
   deeplinkNavigationMap,
   getState,
-}: Props): ReactNode => {
+}: Props): JSX.Element => {
   const navigation = useNavigation()
 
   useEffect(() => {
