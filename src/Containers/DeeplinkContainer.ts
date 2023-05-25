@@ -18,6 +18,7 @@ import type {
   DeeplinkNavigationMap,
   DeeplinkNavigationActionCreator,
 } from '../Model/Types'
+import { matchPath } from '../Api/MatchPath'
 
 type Props = {
   children: JSX.Element,
@@ -44,14 +45,11 @@ export const DeeplinkContainer = ({
   const handleDeeplink = (event: { url: string }): void => {
     log.debug('handleDeeplink event', event)
     const link = event.url
-    const pureLink: string = link.split('?', 1)[0]
-    const {
-      deeplinkNavigationActionCreator,
-      params,
-    } = Object.keys(deeplinkNavigationMap ?? {})
+    const url = new URL(link)
+    const { deeplinkNavigationActionCreator, params } = Object.keys(deeplinkNavigationMap ?? {})
       .reduce<{
       deeplinkNavigationActionCreator: DeeplinkNavigationActionCreator | undefined,
-      params: Record<string, string>,
+      params: Record<string, string | undefined>,
     }>((
       { deeplinkNavigationActionCreator, params },
       deeplinkPath,
@@ -59,19 +57,19 @@ export const DeeplinkContainer = ({
       if (deeplinkNavigationActionCreator != null) {
         return { deeplinkNavigationActionCreator, params }
       }
-      if (deeplinkPath.includes('$')) {
-        const deeplinkPathParts = deeplinkPath.split('/')
-        const pureLinkParts = pureLink.split('/')
-        if (deeplinkPathParts.length !== pureLinkParts.length) {
-          return { deeplinkNavigationActionCreator, params }
+      const pathMatch = matchPath(deeplinkPath, url.pathname)
+      if (pathMatch != null) {
+        const searchParams: Record<string, string> = {}
+        for (const [key, value] of url.searchParams) {
+          searchParams[key] = value
         }
-        const nextParams = deeplinkPathParts.reduce<Record<string, string>>((paramMap, part, index) => {
-          if (part.startsWith('$')) {
-            paramMap[part.slice(1)] = pureLinkParts[index]
-          }
-          return paramMap
-        }, {})
-        return { deeplinkNavigationActionCreator: deeplinkNavigationMap?.[deeplinkPath], params: nextParams }
+        return {
+          deeplinkNavigationActionCreator: deeplinkNavigationMap?.[deeplinkPath],
+          params: {
+            ...pathMatch?.params,
+            ...searchParams,
+          },
+        }
       }
       return { deeplinkNavigationActionCreator, params }
     }, { deeplinkNavigationActionCreator: undefined, params: {} })
