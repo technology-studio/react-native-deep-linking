@@ -9,7 +9,6 @@ import {
 } from 'react'
 import { Linking } from 'react-native'
 import { Log } from '@txo/log'
-import Url from 'url-parse'
 import type { CommonActions } from '@react-navigation/native'
 import { useNavigation } from '@react-navigation/native'
 import type { DefaultRootState } from '@txo-peer-dep/redux'
@@ -74,9 +73,8 @@ export const DeeplinkContainer = ({
       return { deeplinkNavigationActionCreator, params }
     }, { deeplinkNavigationActionCreator: undefined, params: {} })
     if (deeplinkNavigationActionCreator != null) {
-      const url = new Url(link, true)
       const navigationAction: CommonActions.Action | null = deeplinkNavigationActionCreator(
-        { ...url.query, ...params },
+        params,
         getState(),
       )
       if (navigationAction != null) {
