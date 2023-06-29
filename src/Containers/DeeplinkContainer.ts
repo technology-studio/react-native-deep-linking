@@ -45,33 +45,28 @@ export const DeeplinkContainer = ({
     log.debug('handleDeeplink event', event)
     const link = event.url
     const url = new URL(link)
-    const { deeplinkNavigationActionCreator, params } = Object.keys(deeplinkNavigationMap ?? {})
-      .reduce<{
-      deeplinkNavigationActionCreator: DeeplinkNavigationActionCreator | undefined,
-      params: Record<string, string | undefined>,
-    }>((
-      { deeplinkNavigationActionCreator, params },
-      deeplinkPath,
-    ) => {
-      if (deeplinkNavigationActionCreator != null) {
-        return { deeplinkNavigationActionCreator, params }
-      }
-      const pathMatch = matchPath(deeplinkPath, url.pathname)
-      if (pathMatch != null) {
-        const searchParams: Record<string, string> = {}
-        for (const [key, value] of url.searchParams) {
-          searchParams[key] = value
-        }
-        return {
-          deeplinkNavigationActionCreator: deeplinkNavigationMap?.[deeplinkPath],
-          params: {
+    let deeplinkNavigationActionCreator: DeeplinkNavigationActionCreator | undefined
+    let params: Record<string, string | undefined> = {}
+
+    const keys = Object.keys(deeplinkNavigationMap ?? {})
+
+    for (const deeplinkPath of keys) {
+      if (deeplinkNavigationActionCreator == null) {
+        const pathMatch = matchPath(deeplinkPath, url.pathname)
+        if (pathMatch != null) {
+          const searchParams: Record<string, string> = {}
+          for (const [key, value] of url.searchParams) {
+            searchParams[key] = value
+          }
+          deeplinkNavigationActionCreator = deeplinkNavigationMap?.[deeplinkPath]
+          params = {
             ...pathMatch?.params,
             ...searchParams,
-          },
+          }
+          break
         }
       }
-      return { deeplinkNavigationActionCreator, params }
-    }, { deeplinkNavigationActionCreator: undefined, params: {} })
+    }
     if (deeplinkNavigationActionCreator != null) {
       const navigationAction: CommonActions.Action | null = deeplinkNavigationActionCreator(
         params,
