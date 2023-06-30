@@ -15,7 +15,6 @@ import type { DefaultRootState } from '@txo-peer-dep/redux'
 
 import type {
   DeeplinkNavigationMap,
-  DeeplinkNavigationActionCreator,
 } from '../Model/Types'
 import { matchPath } from '../Api/MatchPath'
 
@@ -45,39 +44,29 @@ export const DeeplinkContainer = ({
     log.debug('handleDeeplink event', event)
     const link = event.url
     const url = new URL(link)
-    let deeplinkNavigationActionCreator: DeeplinkNavigationActionCreator | undefined
-    let params: Record<string, string | undefined> = {}
 
     const deeplinkPathList = Object.keys(deeplinkNavigationMap ?? {})
-
     for (const deeplinkPath of deeplinkPathList) {
-      if (deeplinkNavigationActionCreator == null) {
-        const pathMatch = matchPath(deeplinkPath, url.pathname)
-        if (pathMatch != null) {
-          const searchParams: Record<string, string> = {}
-          for (const [key, value] of url.searchParams) {
-            searchParams[key] = value
-          }
-          deeplinkNavigationActionCreator = deeplinkNavigationMap?.[deeplinkPath]
-          params = {
+      const pathMatch = matchPath(deeplinkPath, url.pathname)
+      if (pathMatch != null) {
+        const searchParams: Record<string, string> = {}
+        for (const [key, value] of url.searchParams) {
+          searchParams[key] = value
+        }
+        const navigationAction: CommonActions.Action | undefined | null = deeplinkNavigationMap?.[deeplinkPath](
+          {
             ...pathMatch?.params,
             ...searchParams,
-          }
-          break
+          },
+          getState(),
+        )
+        if (navigationAction != null) {
+          navigation.dispatch(navigationAction)
+          return
         }
       }
     }
-    if (deeplinkNavigationActionCreator != null) {
-      const navigationAction: CommonActions.Action | null = deeplinkNavigationActionCreator(
-        params,
-        getState(),
-      )
-      if (navigationAction != null) {
-        navigation.dispatch(navigationAction)
-      }
-    } else {
-      log.debug('UNKNOWN DEEPLINK', { link })
-    }
+    log.debug('UNKNOWN DEEPLINK', { link })
   }
 
   return children
