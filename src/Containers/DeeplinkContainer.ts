@@ -48,9 +48,9 @@ export const DeeplinkContainer = ({
     let deeplinkNavigationActionCreator: DeeplinkNavigationActionCreator | undefined
     let params: Record<string, string | undefined> = {}
 
-    const keys = Object.keys(deeplinkNavigationMap ?? {})
+    const deeplinkPathList = Object.keys(deeplinkNavigationMap ?? {})
 
-    for (const deeplinkPath of keys) {
+    for (const deeplinkPath of deeplinkPathList) {
       if (deeplinkNavigationActionCreator == null) {
         const pathMatch = matchPath(deeplinkPath, url.pathname)
         if (pathMatch != null) {
