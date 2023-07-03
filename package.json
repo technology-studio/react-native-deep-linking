@@ -33,9 +33,12 @@
     "semantic-release": "semantic-release",
     "update-boilerplate-version": "./scripts/update-boilerplate-version.sh"
   },
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "dependencies": {
-    "@txo/log": "^2.0.1",
-    "url-parse": "^1.5.10"
+    "@txo/functional": "^4.6.0",
+    "@txo/log": "^2.0.1"
   },
   "peerDependencies": {
     "@react-navigation/native": "*",

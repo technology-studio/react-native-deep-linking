@@ -4,13 +4,11 @@
  * @Copyright: Technology Studio
 **/
 
-import type { ReactNode } from 'react'
 import {
   useEffect,
 } from 'react'
 import { Linking } from 'react-native'
 import { Log } from '@txo/log'
-import Url from 'url-parse'
 import type { CommonActions } from '@react-navigation/native'
 import { useNavigation } from '@react-navigation/native'
 import type { DefaultRootState } from '@txo-peer-dep/redux'
@@ -19,9 +17,10 @@ import type {
   DeeplinkNavigationMap,
   DeeplinkNavigationActionCreator,
 } from '../Model/Types'
+import { matchPath } from '../Api/MatchPath'
 
 type Props = {
-  children: ReactNode,
+  children: JSX.Element,
   deeplinkNavigationMap: DeeplinkNavigationMap | undefined,
   getState: () => DefaultRootState,
 }
@@ -32,7 +31,7 @@ export const DeeplinkContainer = ({
   children,
   deeplinkNavigationMap,
   getState,
-}: Props): ReactNode => {
+}: Props): JSX.Element => {
   const navigation = useNavigation()
 
   useEffect(() => {
@@ -45,17 +44,35 @@ export const DeeplinkContainer = ({
   const handleDeeplink = (event: { url: string }): void => {
     log.debug('handleDeeplink event', event)
     const link = event.url
-    const pureLink: string = link.split('?', 1)[0]
-    const deeplinkNavigationActionCreator: DeeplinkNavigationActionCreator | undefined = deeplinkNavigationMap?.[pureLink]
-    if (deeplinkNavigationActionCreator != null) {
-      const url = new Url(link, true)
-      const navigationAction: CommonActions.Action | null = deeplinkNavigationActionCreator(url.query, getState())
-      if (navigationAction != null) {
-        navigation.dispatch(navigationAction)
+
+    if (deeplinkNavigationMap != null) {
+      const deeplinkPathList = Object.keys(deeplinkNavigationMap)
+      const url = new URL(link)
+      for (const deeplinkPath of deeplinkPathList) {
+        const pathMatch = matchPath(deeplinkPath, url.pathname)
+        if (pathMatch != null) {
+          const searchParams: Record<string, string> = {}
+          for (const [key, value] of url.searchParams) {
+            searchParams[key] = value
+          }
+          const deeplinkNavigationActionCreator: DeeplinkNavigationActionCreator | undefined = deeplinkNavigationMap[deeplinkPath]
+          if (deeplinkNavigationActionCreator != null) {
+            const navigationAction: CommonActions.Action | null = deeplinkNavigationActionCreator(
+              {
+                ...pathMatch.params,
+                ...searchParams,
+              },
+              getState(),
+            )
+            if (navigationAction != null) {
+              navigation.dispatch(navigationAction)
+            }
+            return
+          }
+        }
       }
-    } else {
-      log.debug('UNKNOWN DEEPLINK', { link })
     }
+    log.debug('UNKNOWN DEEPLINK', { link })
   }
 
   return children
