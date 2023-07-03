@@ -45,7 +45,7 @@ export const DeeplinkContainer = ({
     log.debug('handleDeeplink event', event)
     const link = event.url
 
-    if (deeplinkNavigationMap) {
+    if (deeplinkNavigationMap != null) {
       const deeplinkPathList = Object.keys(deeplinkNavigationMap)
       const url = new URL(link)
       for (const deeplinkPath of deeplinkPathList) {
@@ -68,7 +68,7 @@ export const DeeplinkContainer = ({
               navigation.dispatch(navigationAction)
             }
             return
-          }        
+          }
         }
       }
     }
