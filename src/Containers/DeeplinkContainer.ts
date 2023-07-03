@@ -15,6 +15,7 @@ import type { DefaultRootState } from '@txo-peer-dep/redux'
 
 import type {
   DeeplinkNavigationMap,
+  DeeplinkNavigationActionCreator,
 } from '../Model/Types'
 import { matchPath } from '../Api/MatchPath'
 
@@ -43,26 +44,31 @@ export const DeeplinkContainer = ({
   const handleDeeplink = (event: { url: string }): void => {
     log.debug('handleDeeplink event', event)
     const link = event.url
-    const url = new URL(link)
 
-    const deeplinkPathList = Object.keys(deeplinkNavigationMap ?? {})
-    for (const deeplinkPath of deeplinkPathList) {
-      const pathMatch = matchPath(deeplinkPath, url.pathname)
-      if (pathMatch != null) {
-        const searchParams: Record<string, string> = {}
-        for (const [key, value] of url.searchParams) {
-          searchParams[key] = value
-        }
-        const navigationAction: CommonActions.Action | undefined | null = deeplinkNavigationMap?.[deeplinkPath](
-          {
-            ...pathMatch?.params,
-            ...searchParams,
-          },
-          getState(),
-        )
-        if (navigationAction != null) {
-          navigation.dispatch(navigationAction)
-          return
+    if (deeplinkNavigationMap) {
+      const deeplinkPathList = Object.keys(deeplinkNavigationMap)
+      const url = new URL(link)
+      for (const deeplinkPath of deeplinkPathList) {
+        const pathMatch = matchPath(deeplinkPath, url.pathname)
+        if (pathMatch != null) {
+          const searchParams: Record<string, string> = {}
+          for (const [key, value] of url.searchParams) {
+            searchParams[key] = value
+          }
+          const deeplinkNavigationActionCreator: DeeplinkNavigationActionCreator | undefined = deeplinkNavigationMap[deeplinkPath]
+          if (deeplinkNavigationActionCreator != null) {
+            const navigationAction: CommonActions.Action | null = deeplinkNavigationActionCreator(
+              {
+                ...pathMatch.params,
+                ...searchParams,
+              },
+              getState(),
+            )
+            if (navigationAction != null) {
+              navigation.dispatch(navigationAction)
+            }
+            return
+          }        
         }
       }
     }
