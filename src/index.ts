@@ -5,3 +5,4 @@
 **/
 
 export { DeeplinkContainer } from './Containers/DeeplinkContainer'
+export * from './Model/Types'
