@@ -1,3 +1,10 @@
+## [3.1.1](https://github.com/technology-studio/react-native-deep-linking/compare/v3.1.0...v3.1.1) (2023-07-18)
+
+
+### Bug fixes
+
+* add missing export of types ([#328](https://github.com/technology-studio/react-native-deep-linking/issues/328)) ([0664e7d](https://github.com/technology-studio/react-native-deep-linking/commit/0664e7dec1dcb6abd29f11194fccff240aa75675))
+
 ## [3.1.0](https://github.com/technology-studio/react-native-deep-linking/compare/v3.0.2...v3.1.0) (2023-07-03)
 
 
