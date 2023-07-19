@@ -1,3 +1,10 @@
+## [3.1.2](https://github.com/technology-studio/react-native-deep-linking/compare/v3.1.1...v3.1.2) (2023-07-19)
+
+
+### Bug fixes
+
+* **deps:** update dependency @txo-peer-dep/redux to ^1.0.1 ([d5f813f](https://github.com/technology-studio/react-native-deep-linking/commit/d5f813f0bd69428c04aad62697ea138e89a42812))
+
 ## [3.1.1](https://github.com/technology-studio/react-native-deep-linking/compare/v3.1.0...v3.1.1) (2023-07-18)
 
 
