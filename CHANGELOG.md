@@ -1,3 +1,10 @@
+## [3.1.15](https://github.com/technology-studio/react-native-deep-linking/compare/v3.1.14...v3.1.15) (2023-07-23)
+
+
+### Bug fixes
+
+* **deps:** update dependency @txo/log to ^2.0.8 ([f1d5321](https://github.com/technology-studio/react-native-deep-linking/commit/f1d532164a9878520a91e264b70822a3c2e4d4d9))
+
 ## [3.1.14](https://github.com/technology-studio/react-native-deep-linking/compare/v3.1.13...v3.1.14) (2023-07-22)
 
 
