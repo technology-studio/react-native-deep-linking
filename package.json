@@ -1,6 +1,6 @@
 {
   "name": "@txo/react-native-deep-linking",
-  "version": "3.1.20",
+  "version": "3.1.21",
   "description": "Technology Studio - React native deep linking",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
