@@ -51,7 +51,7 @@
     "@babel/preset-env": "^7.22.20",
     "@commitlint/cli": "^17.7.1",
     "@commitlint/config-conventional": "^17.7.0",
-    "@react-navigation/native": "^6.1.7",
+    "@react-navigation/native": "^6.1.8",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@txo-peer-dep/log": "^4.0.2",
