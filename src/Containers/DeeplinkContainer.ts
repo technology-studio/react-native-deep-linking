@@ -7,7 +7,10 @@
 import {
   useEffect,
 } from 'react'
-import { Linking } from 'react-native'
+import {
+  Linking,
+  Platform,
+} from 'react-native'
 import { Log } from '@txo/log'
 import type { CommonActions } from '@react-navigation/native'
 import { useNavigation } from '@react-navigation/native'
@@ -27,6 +30,13 @@ type Props = {
 
 const log = new Log('@txo.react-native-deep-linking.lib.Containers.DeeplinkContainer')
 
+const checkInitialUrl = async (): Promise<void> => {
+  const initialUrl = await Linking.getInitialURL()
+  if (initialUrl != null) {
+    await Linking.openURL(initialUrl)
+  }
+}
+
 export const DeeplinkContainer = ({
   children,
   deeplinkNavigationMap,
@@ -36,6 +46,9 @@ export const DeeplinkContainer = ({
 
   useEffect(() => {
     const listener = Linking.addEventListener('url', handleDeeplink)
+    if (Platform.OS === 'android') {
+      void checkInitialUrl()
+    }
     return (): void => {
       listener.remove()
     }
