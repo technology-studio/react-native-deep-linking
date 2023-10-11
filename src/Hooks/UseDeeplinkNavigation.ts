@@ -1,20 +1,21 @@
 /**
  * @Author: Erik Slovak <erik.slovak@technologystudio.sk>
- * @Date: 2019-04-25T13:04:03+02:00
+ * @Date: 2023-10-11T18:10:89+02:00
  * @Copyright: Technology Studio
 **/
 
 import {
+  useCallback,
   useEffect,
 } from 'react'
 import {
   Linking,
-  Platform,
 } from 'react-native'
 import { Log } from '@txo/log'
 import type { CommonActions } from '@react-navigation/native'
 import { useNavigation } from '@react-navigation/native'
 import type { DefaultRootState } from '@txo-peer-dep/redux'
+import { useThrottledCallback } from 'use-debounce'
 
 import type {
   DeeplinkNavigationMap,
@@ -22,13 +23,7 @@ import type {
 } from '../Model/Types'
 import { matchPath } from '../Api/MatchPath'
 
-type Props = {
-  children: JSX.Element,
-  deeplinkNavigationMap: DeeplinkNavigationMap | undefined,
-  getState: () => DefaultRootState,
-}
-
-const log = new Log('@txo.react-native-deep-linking.lib.Containers.DeeplinkContainer')
+const log = new Log('@txo.react-native-deep-linking.lib.Hooks.UseDeeplinkNavigation')
 
 const checkInitialUrl = async (): Promise<void> => {
   const initialUrl = await Linking.getInitialURL()
@@ -37,24 +32,25 @@ const checkInitialUrl = async (): Promise<void> => {
   }
 }
 
-export const DeeplinkContainer = ({
-  children,
+export const useDeeplinkNavigation = ({
   deeplinkNavigationMap,
   getState,
-}: Props): JSX.Element => {
+}: {
+  deeplinkNavigationMap: DeeplinkNavigationMap | undefined,
+  getState: () => DefaultRootState,
+}): void => {
   const navigation = useNavigation()
 
   useEffect(() => {
+    const handleDeeplink = useThrottledCallback(_handleDeeplink, 1000, { trailing: false })
     const listener = Linking.addEventListener('url', handleDeeplink)
-    if (Platform.OS === 'android') {
-      void checkInitialUrl()
-    }
+    void checkInitialUrl()
     return (): void => {
       listener.remove()
     }
   }, [])
 
-  const handleDeeplink = (event: { url: string }): void => {
+  const _handleDeeplink = useCallback((event: { url: string }): void => {
     log.debug('handleDeeplink event', event)
     const link = event.url
 
@@ -86,7 +82,5 @@ export const DeeplinkContainer = ({
       }
     }
     log.debug('UNKNOWN DEEPLINK', { link })
-  }
-
-  return children
+  }, [])
 }
