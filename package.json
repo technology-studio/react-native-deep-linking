@@ -91,10 +91,5 @@
     "ts-jest": "^29.1.1",
     "typescript": "^5.2.2",
     "utility-types": "^3.10.0"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
   }
 }
