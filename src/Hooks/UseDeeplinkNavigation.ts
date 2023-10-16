@@ -26,13 +26,6 @@ import { matchPath } from '../Api/MatchPath'
 
 const log = new Log('@txo.react-native-deep-linking.lib.Hooks.UseDeeplinkNavigation')
 
-const checkInitialUrl = async (): Promise<void> => {
-  const initialUrl = await Linking.getInitialURL()
-  if (initialUrl != null) {
-    await Linking.openURL(initialUrl)
-  }
-}
-
 export const useDeeplinkNavigation = ({
   deeplinkNavigationMap,
   getState,
@@ -78,6 +71,14 @@ export const useDeeplinkNavigation = ({
   }, [deeplinkNavigationMap, getState, navigation])
   const handleDeeplink = useThrottledCallback(_handleDeeplink, 1000, { trailing: false })
 
+  const checkInitialUrl = useCallback(async (): Promise<void> => {
+    const initialUrl = await Linking.getInitialURL()
+    if (initialUrl != null) {
+      log.debug('checkInitialUrl', { initialUrl })
+      handleDeeplink({ url: initialUrl })
+    }
+  }, [handleDeeplink])
+
   useEffect(() => {
     const listener = Linking.addEventListener('url', handleDeeplink)
     if (!isInitialUrlChecked.current) {
@@ -87,5 +88,5 @@ export const useDeeplinkNavigation = ({
     return (): void => {
       listener.remove()
     }
-  }, [handleDeeplink])
+  }, [checkInitialUrl, handleDeeplink])
 }
