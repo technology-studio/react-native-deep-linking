@@ -7,6 +7,7 @@
 import {
   useCallback,
   useEffect,
+  useRef,
 } from 'react'
 import {
   Linking,
@@ -40,15 +41,7 @@ export const useDeeplinkNavigation = ({
   getState: () => DefaultRootState,
 }): void => {
   const navigation = useNavigation()
-
-  useEffect(() => {
-    const handleDeeplink = useThrottledCallback(_handleDeeplink, 1000, { trailing: false })
-    const listener = Linking.addEventListener('url', handleDeeplink)
-    void checkInitialUrl()
-    return (): void => {
-      listener.remove()
-    }
-  }, [])
+  const isInitialUrlChecked = useRef(false)
 
   const _handleDeeplink = useCallback((event: { url: string }): void => {
     log.debug('handleDeeplink event', event)
@@ -82,5 +75,17 @@ export const useDeeplinkNavigation = ({
       }
     }
     log.debug('UNKNOWN DEEPLINK', { link })
-  }, [])
+  }, [deeplinkNavigationMap, getState, navigation])
+  const handleDeeplink = useThrottledCallback(_handleDeeplink, 1000, { trailing: false })
+
+  useEffect(() => {
+    const listener = Linking.addEventListener('url', handleDeeplink)
+    if (!isInitialUrlChecked.current) {
+      void checkInitialUrl()
+      isInitialUrlChecked.current = true
+    }
+    return (): void => {
+      listener.remove()
+    }
+  }, [handleDeeplink])
 }
