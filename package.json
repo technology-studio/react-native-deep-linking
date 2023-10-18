@@ -38,7 +38,8 @@
   },
   "dependencies": {
     "@txo/functional": "^4.6.15",
-    "@txo/log": "^2.0.13"
+    "@txo/log": "^2.0.13",
+    "use-debounce": "^9.0.4"
   },
   "peerDependencies": {
     "@react-navigation/native": "*",
