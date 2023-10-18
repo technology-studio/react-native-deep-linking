@@ -1,3 +1,26 @@
+## [4.0.0](https://github.com/technology-studio/react-native-deep-linking/compare/v3.1.27...v4.0.0) (2023-10-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* convert container component for deepling navigation into hook
+
+* fix: check initial url on startup on android
+
+* feat: create hook for deeplink navigation
+
+* refactor: removed DeeplinkContainer
+
+* chore: use react eslint rules
+
+* fix: check initial url only once
+
+* fix: use handleDeeplink instead of opening URL again
+
+### Features
+
+* create hook for deeplink navigation ([#461](https://github.com/technology-studio/react-native-deep-linking/issues/461)) ([46f2c07](https://github.com/technology-studio/react-native-deep-linking/commit/46f2c07380a5f8d78e5be0ada0bcb01994fb3a96))
+
 ## [3.1.27](https://github.com/technology-studio/react-native-deep-linking/compare/v3.1.26...v3.1.27) (2023-09-20)
 
 
