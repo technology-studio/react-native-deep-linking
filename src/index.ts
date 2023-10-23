@@ -4,5 +4,5 @@
  * @Copyright: Technology Studio
 **/
 
-export { DeeplinkContainer } from './Containers/DeeplinkContainer'
+export { useDeeplinkNavigation } from './Hooks/UseDeeplinkNavigation'
 export * from './Model/Types'
