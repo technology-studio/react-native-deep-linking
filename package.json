@@ -55,7 +55,7 @@
     "@txo-peer-dep/redux": "^1.0.1",
     "@txo/commitlint": "^1.0.5",
     "@txo/log-console": "^3.0.0",
-    "@txo/semantic-release": "^1.0.1",
+    "@txo/semantic-release": "^1.0.2",
     "@types/jest": "^29.5.7",
     "@types/react-native": "^0.72.5",
     "@types/url-parse": "^1.4.10",
