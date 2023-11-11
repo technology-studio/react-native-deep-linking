@@ -1,3 +1,10 @@
+## [4.0.2](https://github.com/technology-studio/react-native-deep-linking/compare/v4.0.1...v4.0.2) (2023-11-11)
+
+
+### Bug fixes
+
+* **deps:** update dependency @txo/functional to ^4.6.16 ([c5e7b94](https://github.com/technology-studio/react-native-deep-linking/commit/c5e7b94b194ac6c7504e0a0f153e80b823e56d62))
+
 ## [4.0.1](https://github.com/technology-studio/react-native-deep-linking/compare/v4.0.0...v4.0.1) (2023-11-11)
 
 
