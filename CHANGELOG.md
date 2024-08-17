@@ -1,3 +1,15 @@
+## [4.0.12](https://github.com/technology-studio/react-native-deep-linking/compare/v4.0.11...v4.0.12) (2024-08-17)
+
+
+### CI
+
+* add lint command for CI ([#692](https://github.com/technology-studio/react-native-deep-linking/issues/692)) ([db5c223](https://github.com/technology-studio/react-native-deep-linking/commit/db5c2235b4fbadb749b443eef880c3a333aa6bc1))
+
+
+### Bug fixes
+
+* **deps:** update dependency use-debounce to ^10.0.3 ([c5a912c](https://github.com/technology-studio/react-native-deep-linking/commit/c5a912c555b46d71ccf1fda82a0113da219bd88a))
+
 ## [4.0.11](https://github.com/technology-studio/react-native-deep-linking/compare/v4.0.10...v4.0.11) (2024-07-28)
 
 
