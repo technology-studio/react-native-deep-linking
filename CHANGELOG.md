@@ -1,3 +1,16 @@
+## [4.0.13](https://github.com/technology-studio/react-native-deep-linking/compare/v4.0.12...v4.0.13) (2024-10-13)
+
+
+### CI
+
+* rename workflows ([#709](https://github.com/technology-studio/react-native-deep-linking/issues/709)) ([f704867](https://github.com/technology-studio/react-native-deep-linking/commit/f704867e9cf28d70ce8fc33290d0608e41a99ecf))
+* update URL for code-quality ([#702](https://github.com/technology-studio/react-native-deep-linking/issues/702)) ([b818f3f](https://github.com/technology-studio/react-native-deep-linking/commit/b818f3fcb40b21c224bed00566a84843fb55ec99))
+
+
+### Bug fixes
+
+* **deps:** update dependency use-debounce to ^10.0.4 ([f48a318](https://github.com/technology-studio/react-native-deep-linking/commit/f48a3189be3a26993d04e3c14ce91424f3157548))
+
 ## [4.0.12](https://github.com/technology-studio/react-native-deep-linking/compare/v4.0.11...v4.0.12) (2024-08-17)
 
 
