@@ -2,5 +2,5 @@
   "compilerOptions": {
     "skipLibCheck": true
   },
-  "extends": "@txo/tsconfig"
+  "extends": "@txo/tsconfig-cjs"
 }
