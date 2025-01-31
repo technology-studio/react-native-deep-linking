@@ -1,0 +1,11 @@
+[
+  "@typescript-eslint/no-magic-numbers",
+  "eslint-comments/require-description",
+  "@typescript-eslint/consistent-indexed-object-style",
+  "@stylistic/space-before-function-paren",
+  "@typescript-eslint/prefer-destructuring",
+  "complexity",
+  "@stylistic/operator-linebreak",
+  "@typescript-eslint/no-unnecessary-condition",
+  "@typescript-eslint/consistent-type-exports"
+]
