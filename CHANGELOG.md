@@ -1,3 +1,16 @@
+## [4.0.14](https://github.com/technology-studio/react-native-deep-linking/compare/v4.0.13...v4.0.14) (2025-06-07)
+
+
+### CI
+
+* add synchronize to PR workflow ([#750](https://github.com/technology-studio/react-native-deep-linking/issues/750)) ([a0ffbe5](https://github.com/technology-studio/react-native-deep-linking/commit/a0ffbe50007b6cbcd7b253b6d55b77142ccd138c))
+* update pr and release workflows ([#748](https://github.com/technology-studio/react-native-deep-linking/issues/748)) ([ce5ca23](https://github.com/technology-studio/react-native-deep-linking/commit/ce5ca23d6cf4704fe008a4f392142b37ba44a5c0))
+
+
+### Bug fixes
+
+* **deps:** update dependency use-debounce to ^10.0.5 ([#815](https://github.com/technology-studio/react-native-deep-linking/issues/815)) ([a6646f6](https://github.com/technology-studio/react-native-deep-linking/commit/a6646f6ae102fb906d5672cde3b2a9877525b175))
+
 ## [4.0.13](https://github.com/technology-studio/react-native-deep-linking/compare/v4.0.12...v4.0.13) (2024-10-13)
 
 
