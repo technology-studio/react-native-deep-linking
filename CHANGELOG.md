@@ -1,3 +1,13 @@
+## [4.0.16](https://github.com/technology-studio/react-native-deep-linking/compare/v4.0.15...v4.0.16) (2026-03-15)
+
+### CI
+
+* add pr.yml permissions ([#842](https://github.com/technology-studio/react-native-deep-linking/issues/842)) ([261a9c5](https://github.com/technology-studio/react-native-deep-linking/commit/261a9c5bbac83b07ab21f7e837fb623c4ed73b05))
+
+### Bug fixes
+
+* **deps:** update dependency use-debounce to ^10.1.0 ([#865](https://github.com/technology-studio/react-native-deep-linking/issues/865)) ([a020e68](https://github.com/technology-studio/react-native-deep-linking/commit/a020e68d09c8bdb991d5a2858231e9622e06989c))
+
 ## [4.0.15](https://github.com/technology-studio/react-native-deep-linking/compare/v4.0.14...v4.0.15) (2025-09-02)
 
 
