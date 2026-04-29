@@ -1,3 +1,9 @@
+## [4.0.17](https://github.com/technology-studio/react-native-deep-linking/compare/v4.0.16...v4.0.17) (2026-04-29)
+
+### Bug fixes
+
+* **deps:** update dependency use-debounce to ^10.1.1 ([#891](https://github.com/technology-studio/react-native-deep-linking/issues/891)) ([5db358d](https://github.com/technology-studio/react-native-deep-linking/commit/5db358d9c1b4d8ca36b6cccae67f1330fd4a3fa9))
+
 ## [4.0.16](https://github.com/technology-studio/react-native-deep-linking/compare/v4.0.15...v4.0.16) (2026-03-15)
 
 ### CI
